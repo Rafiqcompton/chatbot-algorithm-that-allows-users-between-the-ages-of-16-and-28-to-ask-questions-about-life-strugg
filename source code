@@ -1,0 +1,45 @@
+import re
+import random
+
+# define function to check if age is valid
+def is_valid_age(age):
+    if re.match("^[1-9][0-9]?$|^1[0-9][0-9]$", age):
+        return int(age) >= 16 and int(age) <= 28
+    return False
+
+# define function to process user input
+def process_input(input_text):
+    # implement text processing logic here
+    # for example, use sentiment analysis to understand user's mood
+    # or use keyword matching to identify common struggles and provide relevant advice
+    responses = [
+        "I understand how you're feeling, have you tried talking to someone about it?",
+        "It's okay to not have everything figured out, take it one step at a time.",
+        "Remember to take care of yourself and prioritize your mental health.",
+        "Have you considered seeking professional help? It can make a big difference."
+    ]
+    return random.choice(responses)
+
+# prompt user for age
+age = input("Please enter your age: ")
+
+# check if age is valid
+while not is_valid_age(age):
+    age = input("Invalid age. Please enter a valid age between 16 and 28: ")
+
+# greet user and start conversation
+print("Hello! How can I help you today?")
+while True:
+    # get user input
+    user_input = input("> ")
+
+    # check if user wants to exit
+    if user_input.lower() == "bye":
+        print("Goodbye!")
+        break
+
+    # process user input and generate response
+    response = process_input(user_input)
+
+    # display response
+    print(response)
